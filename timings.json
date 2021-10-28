@@ -1,31 +1,5 @@
 {
     "days": {
-        "friday": {
-            "delivery": {
-                "availability": true,
-                "timings": [
-                    {
-                        "close": "12:00",
-                        "open": "11:00"
-                    },
-                    {
-                        "close": "15:00",
-                        "open": "14:00"
-                    }
-                ]
-            },
-            "shop": {
-                "availability": true,
-                "timings": [
-                    {
-                        "close": "22:00",
-                        "open": "11:00"
-                    }
-                ]
-            },
-            "updated_at": "2021-10-27 03:08:49",
-            "is_same": false
-        },
         "monday": {
             "delivery": {
                 "availability": false,
@@ -54,6 +28,93 @@
                 ]
             },
             "updated_at": "2021-08-08 19:24:45",
+            "is_same": false
+        },
+        "tuesday": {
+            "delivery": {
+                "availability": true,
+                "timings": [
+                    {
+                        "close": "23:36",
+                        "open": "22:36"
+                    }
+                ]
+            },
+            "shop": {
+                "availability": true,
+                "timings": [
+                    {
+                        "close": "23:36",
+                        "open": "22:36"
+                    }
+                ]
+            },
+            "updated_at": "2021-08-08 14:52:26",
+            "is_same": true
+        },
+        "wednesday": {
+            "delivery": {
+                "availability": false,
+                "timings": []
+            },
+            "shop": {
+                "availability": true,
+                "timings": [
+                    {
+                        "close": "22:00",
+                        "open": "11:58"
+                    }
+                ]
+            },
+            "updated_at": "2021-08-08 14:27:17",
+            "is_same": false
+        },
+        "thursday": {
+            "delivery": {
+                "availability": false,
+                "timings": [
+                    {
+                        "close": "22:00",
+                        "open": "11:00"
+                    }
+                ]
+            },
+            "shop": {
+                "availability": false,
+                "timings": [
+                    {
+                        "close": "22:00",
+                        "open": "11:00"
+                    }
+                ]
+            },
+            "updated_at": "2021-08-08 14:54:54",
+            "is_same": true
+        },
+        "friday": {
+            "delivery": {
+                "availability": true,
+                "timings": [
+                    {
+                        "close": "12:00",
+                        "open": "11:00"
+                    },
+                    {
+                        "close": "15:00",
+                        "open": "14:00"
+                    }
+                ]
+            },
+            "shop": {
+                "availability": true,
+                "timings": [
+                    {
+                        "close": "22:00",
+                        "open": "11:00"
+                    }
+                ]
+            },
+            "updated_at": "2021-10-27 03:08:49",
             "is_same": false
         },
         "saturday": {
@@ -97,67 +158,6 @@
                 ]
             },
             "is_same": true
-        },
-        "thursday": {
-            "delivery": {
-                "availability": false,
-                "timings": [
-                    {
-                        "close": "22:00",
-                        "open": "11:00"
-                    }
-                ]
-            },
-            "shop": {
-                "availability": false,
-                "timings": [
-                    {
-                        "close": "22:00",
-                        "open": "11:00"
-                    }
-                ]
-            },
-            "updated_at": "2021-08-08 14:54:54",
-            "is_same": true
-        },
-        "tuesday": {
-            "delivery": {
-                "availability": true,
-                "timings": [
-                    {
-                        "close": "23:36",
-                        "open": "22:36"
-                    }
-                ]
-            },
-            "shop": {
-                "availability": true,
-                "timings": [
-                    {
-                        "close": "23:36",
-                        "open": "22:36"
-                    }
-                ]
-            },
-            "updated_at": "2021-08-08 14:52:26",
-            "is_same": true
-        },
-        "wednesday": {
-            "delivery": {
-                "availability": false,
-                "timings": []
-            },
-            "shop": {
-                "availability": true,
-                "timings": [
-                    {
-                        "close": "22:00",
-                        "open": "11:58"
-                    }
-                ]
-            },
-            "updated_at": "2021-08-08 14:27:17",
-            "is_same": false
         }
     }
 }
