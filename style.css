@@ -4,4 +4,31 @@
 
 .day{
 	margin: auto;
+	text-transform:capitalize;
+}
+
+.timing{
+	background-color: antiquewhite;
+	border-radius: 15%;
+	width: 100%;
+	margin: 10% 0%;
+	font-size: 80%;
+}
+
+.stiming{
+	height: 42%;
+	width: 100%;	
+	font-size: 80%;
+}
+
+.row{
+	padding: 0.5% 0%;
+}
+
+.btn-sm{
+	background-color: lightgray;
+	padding: 0% 1%;
+	font-size: 12px;
+	border-radius: 15%;
+	border: 1px solid black;
 }
