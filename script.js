@@ -69,6 +69,55 @@ function load(){
             
             }
             
+            if(data.days[i].shop.availability)
+            {
+              if(count_shop < 2)
+              {
+                if(data.days[i].is_same)
+                {
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="addbreak('+i+')" value="+Break"></div>';
+
+                }
+                else{
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="addbreak('+i+')" value="+Break"></div>';
+                }
+              }
+              else{
+                if(data.days[i].is_same)
+                {
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="delbreak('+i+')" value="-Break"></div>';
+
+                }
+                else{
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="delbreak('+i+')" value="-Break"></div>';
+                }
+              }
+            }
+
+            if(data.days[i].delivery.availability)
+            {
+              if(count_delivery < 2)
+              {
+                if(data.days[i].is_same)
+                {
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="addavalability('+i+')" value="+Delivery"></div>';
+
+                }
+                else{
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="addavalability('+i+')" value="+Delivery"></div>';
+                }
+              }
+              else{
+                if(data.days[i].is_same)
+                {
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="delavalability('+i+')" value="-Delivery"></div>';
+
+                }
+                else{
+                  content += '<div class="col-1"><input class="btn-sm" type ="button" onclick="delavalability('+i+')" value="-Delivery"></div>';
+                }
+              }
+            }
             content += "</div>";
           
 
@@ -83,4 +132,4 @@ function load(){
 }
 xhttp.open("GET", "timings.json", true);
 xhttp.send();
-load();
+load()
