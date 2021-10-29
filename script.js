@@ -7,11 +7,12 @@ xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
       
     data = JSON.parse(this.responseText);
-    load(data);
+    load();
+    switchb("monday");
 
 
 
-    function load(data){
+    function load(){
               content = ""
               for (var i in data.days)
               {
@@ -34,7 +35,7 @@ xhttp.onreadystatechange = function() {
 
                   if(data.days[i].shop.availability == true && count_shop > j)
                   {
-                    content += '<div class="col-2"><div class="border border-dark timing" onclick="time_editso('+data+','+i+','+j+')" id="shopopen'+i+j+'">' + data.days[i].shop.timings[j].open + '</div>';
+                    content += '<div class="col-2"><div class="border border-dark timing" onclick="time_editso('+i+','+j+')" id="shopopen'+i+j+'">' + data.days[i].shop.timings[j].open + '</div>';
                   }else{
                     content += '<div class="col-2"><div class="stiming"></div>';
                   }
@@ -44,7 +45,7 @@ xhttp.onreadystatechange = function() {
                   {
                     if(data.days[i].delivery.availability == true && count_delivery > j)
                     {
-                      content += '<div class="border border-dark timing" onclick="time_editdo('+data+','+i+','+j+')" id="deliveryopen'+i+j+'">' + data.days[i].delivery.timings[j].open+ '</div></div>';
+                      content += '<div class="border border-dark timing" onclick="time_editdo('+i+','+j+')" id="deliveryopen'+i+j+'">' + data.days[i].delivery.timings[j].open+ '</div></div>';
                     }else{
                       content += '<div class="stiming"></div></div>';
                     }
@@ -57,7 +58,7 @@ xhttp.onreadystatechange = function() {
                   
                   if(data.days[i].shop.availability == true && count_shop > j)
                   {
-                    content += '<div class="col-2"><div class="border border-dark timing" onclick="time_editsc('+data+','+i+','+j+')" id="shopclose'+i+j+'">' + data.days[i].shop.timings[j].close + '</div>';
+                    content += '<div class="col-2"><div class="border border-dark timing" onclick="time_editsc('+i+','+j+')" id="shopclose'+i+j+'">' + data.days[i].shop.timings[j].close + '</div>';
                   }else{
                     content += '<div class="col-2"><div class="stiming"></div>';
                   }
@@ -68,7 +69,7 @@ xhttp.onreadystatechange = function() {
                   {
                     if(data.days[i].delivery.availability == true && count_delivery > j)
                     {
-                      content += '<div class="border border-dark timing" onclick="time_editdc('+data+','+i+','+j+')" id="deliveryclose'+i+j+'">' + data.days[i].delivery.timings[j].close+ '</div></div>';
+                      content += '<div class="border border-dark timing" onclick="time_editdc('+i+','+j+')" id="deliveryclose'+i+j+'">' + data.days[i].delivery.timings[j].close+ '</div></div>';
                     }else{
                       content += '<div class="stiming"></div></div>';
                     }
@@ -130,32 +131,32 @@ xhttp.onreadystatechange = function() {
                   }
                 }
 
-                // keys
+                // switchs
 
                 if(data.days[i].is_same)
                 {
                   if(data.days[i].shop.availability && data.days[i].delivery.availability)
                   {
-                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchb('+i+','+data.days+')"></div></div>';
+                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchb('+i+')"></div></div>';
                   }else{
-                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchb('+i+','+data.days+')"></div></div>';
+                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchb('+i+')"></div></div>';
                   }
 
                 }else{
 
                   if(data.days[i].shop.availability)
                   {
-                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchs('+i+','+data.days+')"></div>';
+                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchs('+i+')"></div>';
                   }else{
-                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchs('+i+','+data.days+')"></div>';
+                    content += '<div class="col-1"><div class="form-check form-switch text-center"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchs('+i+')"></div>';
                   }
 
                   
                   if(data.days[i].delivery.availability)
                   {
-                    content += '<div class="form-check form-switch text-center"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchd('+i+','+data.days+')"> </div></div>';
+                    content += '<div class="form-check form-switch text-center"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" checked onclick="switchd('+i+')"> </div></div>';
                   }else{
-                    content += '<div class="form-check form-switch text-center"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchd('+i+','+data.days+')"> </div></div>';
+                    content += '<div class="form-check form-switch text-center"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault switchd'+i+'" onclick="switchd('+i+')"> </div></div>';
                   }
                 }
                 
@@ -165,48 +166,32 @@ xhttp.onreadystatechange = function() {
       };
 
 
-
-    function delavalability(){
-      alert("Delivary is not available!!!");
-      load();
-    }
-
-
-    function delivery(){
-      alert("Editing is not available$$$");
-      load();
-    }
-
-    function switchd(day,data){
-
-      if(data[day].delivery.availability){
-        data[day].delivery.availability = false;
-      }
-      load();
-    }
-
-    function switchb(day,data){
+    function switchd(day){
       console.log(data);
-      if(data[day].shop.availability){
-        console.log(data[day].shop.availability);
+      if(data.days[day].delivery.availability){
+        data.days[day].delivery.availability = false;
       }else{
-        console.log(data[day].shop.availability);
+        data.days[day].shop.availability = true;
       }
       load();
     }
 
+    function switchb(day){
+      console.log(day);
+    }
 
-    function switchs(day,data){
+
+    function switchs(day){
       console.log(data);
-      if(data[day].shop.availability){
-        console.log(data[day].shop.availability);
+      if(data.days[day].shop.availability){
+        console.log(data.days[day].shop.availability);
       }else{
-        console.log(data[day].shop.availability);
+        console.log(data.days[day].shop.availability);
       }
       load();
     }
 
-
+    // delivery btn code
 
     function btn_delivery_minus(day){
       if(data.days[day].is_same)
@@ -220,7 +205,7 @@ xhttp.onreadystatechange = function() {
     }
 
 
-
+    // delivery btn code
     function btn_delivery_plus(day){
       if(data.days[day].is_same)
       {
