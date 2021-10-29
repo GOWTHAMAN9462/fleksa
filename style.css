@@ -1,6 +1,9 @@
 
 .day{ 
 	text-transform:capitalize;
+	font-weight: bolder;
+	margin: 0px;
+	font-size: larger;
 }
 .col-1, .col-2{
 	text-align: center;
@@ -9,9 +12,12 @@
 .timing{
 	background-color: antiquewhite;
 	border-radius: 15%;
-	width:50%;
-	margin: 10% 0%;
+	width:20%;
+	height: 10%;
+	margin: 2% auto;
 	font-size: 80%;
+	vertical-align: middle;
+	text-align: center;
 }
 
 .stiming{
@@ -35,5 +41,19 @@
 	padding: 0% 1%;
 	font-size: 12px;
 	border-radius: 15%;
+	width : 70%;
+	margin: 0% auto;
 	border: 1px solid black;
+	vertical-align: middle;
+}
+
+.btn-del, .btn-shp{
+	height: 30%;
+	margin: 10% auto;
+}
+
+
+.s_d{
+	width:10%;
+	border-radius: 50%;
 }
