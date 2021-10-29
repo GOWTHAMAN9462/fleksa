@@ -2,20 +2,28 @@
 	width: 95%;
 }
 
-.day{
-	margin: auto;
+.day{ 
 	text-transform:capitalize;
+}
+.col-1, .col-2{
+	text-align: center;
 }
 
 .timing{
 	background-color: antiquewhite;
 	border-radius: 15%;
-	width: 100%;
+	width:50%;
 	margin: 10% 0%;
 	font-size: 80%;
 }
 
 .stiming{
+	height: 42%;
+	width: 100%;	
+	font-size: 80%;
+}
+
+.sbtn{
 	height: 42%;
 	width: 100%;	
 	font-size: 80%;
