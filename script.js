@@ -15,8 +15,8 @@ xhttp.open("GET", "timings.json", true);
 xhttp.send();
 
 function load(){
-  console.log(data);
-  content ='<div class="row border border-dark bg-secondary text-light"><div class="col-2 text-center" >Days</div><div class="col text-center" >Shop Time</div><div class="col text-center" >Delivery Time</div><div class="col-1"></div><div class="col-1"></div><div class="col-1"></div></div>';
+  console.log(data.days);
+  content = "";
   for (var i in data.days)
   {
     var count_shop = data.days[i].shop.timings.length;
@@ -48,7 +48,7 @@ function load(){
 
       if(data.days[i].shop.availability == true && count_shop > j)
       {
-        content += '<div class="row"><span class="border border-dark timing" onclick="time_editso('+i+','+j+')" id="shopopen'+i+j+'">' + data.days[i].shop.timings[j].open + '</span>';
+        content += '<div class="row"><span class="border border-dark timing" onclick="TimeEditShop('+"'"+i+"'"+','+j+','+"'open'"+')" id="shopopen'+i+j+'">' + data.days[i].shop.timings[j].open + '</span>';
       }else{
         content += '<div class="row"><span class="stiming"></span>';
       }
@@ -57,7 +57,7 @@ function load(){
       
       if(data.days[i].shop.availability == true && count_shop > j)
       {
-        content += '<span class="border border-dark timing" onclick="time_editsc('+i+','+j+')" id="shopclose'+i+j+'">' + data.days[i].shop.timings[j].close + '</span></div>';
+        content += '<span class="border border-dark timing" onclick="TimeEditShop('+"'"+i+"'"+','+j+','+"'close'"+')" id="shopclose'+i+j+'">' + data.days[i].shop.timings[j].close + '</span></div>';
       }else{
         content += '<span class="stiming"></span></div>';
       }
@@ -83,7 +83,7 @@ function load(){
       {
         if(data.days[i].delivery.availability == true && count_delivery > j)
         {
-          content += '<div class="row"><span class="border border-dark timing" onclick="time_editdo('+i+','+j+')" id="deliveryopen'+i+j+'">' + data.days[i].delivery.timings[j].open+ '</span>';
+          content += '<div class="row"><span class="border border-dark timing" onclick="TimeEditDelivery('+"'"+i+"'"+','+j+','+"'close'"+')" id="deliveryopen'+i+j+'">' + data.days[i].delivery.timings[j].open+ '</span>';
         }else{
           content += '<div class="row"><span class="stiming"></span>';
         }
@@ -97,7 +97,7 @@ function load(){
       {
         if(data.days[i].delivery.availability == true && count_delivery > j)
         {
-          content += '<span class="border border-dark timing" onclick="time_editdc('+i+','+j+')" id="deliveryclose'+i+j+'">' + data.days[i].delivery.timings[j].close+ '</span></div>';
+          content += '<span class="border border-dark timing" onclick="TimeEditDelivery('+"'"+i+"'"+','+j+','+"'close'"+')" id="deliveryclose'+i+j+'">' + data.days[i].delivery.timings[j].close+ '</span></div>';
         }else{
           content += '<span class="stiming"></span></div>';
         }
@@ -137,13 +137,13 @@ function load(){
       {
         if(count_delivery == 0)
         {
-          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="simple()" value="+Delivery"></div>';
+          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="adddelivery('+"'"+i+"',"+count_delivery+')" value="+Delivery"></div>';
         }else if(count_delivery == 1)
         {
-          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="simple()" value="+Delivery"><input class="btn-sm" type ="button" onclick="simple()" value="-Delivery"></div>';
+          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="adddelivery('+"'"+i+"',"+count_delivery+')" value="+Delivery"><input class="btn-sm" type ="button" onclick="deldelivery('+"'"+i+"',"+count_delivery+')" value="-Delivery"></div>';
         }
         else{
-          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="simple()" value="-Delivery"></div>';
+          content += '<div class="col-1"><input class="btn-sm btn-del" type ="button" onclick="deldelivery('+"'"+i+"',"+count_delivery+')" value="-Delivery"></div>';
         }
       }else{
         content += '<div class="col-1"></div>';
@@ -187,7 +187,7 @@ function load(){
 };
 
 
-
+// switch key function for delivery while is_same is false
 
 function switchd(day){
   if(data.days[day].delivery.availability){
@@ -197,6 +197,8 @@ function switchd(day){
   }
   load();
 }
+
+// switch key function for both while is_same is true
 
 function switchb(day){
   if(data.days[day].delivery.availability && data.days[day].shop.availability){
@@ -209,6 +211,7 @@ function switchb(day){
   load();
 }
 
+// switch key function for shop while is_same is false
 
 function switchs(day){
 
@@ -220,17 +223,97 @@ function switchs(day){
   load();
 }
 
+// changing different to same
+
 function diff(day){
   data.days[day].is_same = false;
   load();
 }
+
+// changing same to different
 
 function same(day){
   data.days[day].is_same = true;
   load();
 }
 
+// deleting shop section
+
 function delbreak(day,count){
-  delete data.days[day].shop.timings[count-1];
-  console.log(data);
+  data.days[day].shop.timings.splice(count-1,1);
+  load();
+}
+
+// adding shop section
+
+function addbreak(day,count){
+  data.days[day].shop.timings.splice(count,1,{'close':'edit','open':'edit'});
+  load();
+} 
+
+// adding delivery section
+
+function adddelivery(day,count){
+  data.days[day].delivery.timings.splice(count,1,{'close':'edit','open':'edit'});
+  load();
+}
+
+// deleting the delivery section 
+
+function deldelivery(day,count){
+  data.days[day].delivery.timings.splice(count-1,1);
+  load();
+}
+
+// updating data while clicking enter
+
+document.onkeydown = function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.querySelectorAll("span[contenteditable]").forEach(function(time){
+      time.removeAttribute("contenteditable");
+    save();
+    })
+  }
+}
+
+//function to edit timing in shop section
+
+function TimeEditShop(day,count,status){
+  document.getElementById("shop"+status+day+count).setAttribute('contenteditable', true)
+  document.getElementById("shop"+status+day+count).focus()
+}
+
+// function to edit timing in delivery section
+
+function TimeEditDelivery(day,count,status){
+  document.getElementById("delivery"+status+day+count).setAttribute('contenteditable', true)
+  document.getElementById("delivery"+status+day+count).focus()
+}
+
+
+//saving the updated data to the javascript object
+
+function save(){
+  for(i in data.days){
+    var count_shop = data.days[i].shop.timings.length;
+    var count_delivery = data.days[i].delivery.timings.length;
+
+    for (var j = 0 ; j < 2 ; j++)
+    {
+
+      if(j < count_delivery){
+        data.days[i].delivery.timings[j]['open'] = document.getElementById("shopopen"+i+j).innerText;
+        data.days[i].delivery.timings[j]['close'] = document.getElementById("shopclose"+i+j).innerText;
+      }
+
+      if( j < count_shop){
+        data.days[i].shop.timings[j]['open'] = document.getElementById("shopopen"+i+j).innerText;
+        data.days[i].shop.timings[j]['close'] = document.getElementById("shopclose"+i+j).innerText;
+      }
+
+    }
+  }
+
+  load();
 }
